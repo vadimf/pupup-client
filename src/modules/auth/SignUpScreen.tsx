@@ -61,9 +61,9 @@ const SignUpScreen: React.FC<IProps> = ({
                     onSubmit={({email, password}) =>
                         dispatch(isSignUpScreen ? signUp(email, password) : signIn(email, password))
                     }>
-                    {({values, handleChange, handleSubmit, errors, touched}) => (
+                    {({values, handleChange, handleSubmit, errors, touched, submitCount}) => (
                         <>
-                            {Object.keys(errors).length > 0 && (
+                            {submitCount > 0 && (
                                 <ErrorContainer>
                                     <AppText color={Colors.WHITE}>{t('emailOrPasswordIncorrect')}</AppText>
                                     <ErrorIcon source={images.whiteInputError} />
