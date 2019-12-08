@@ -63,7 +63,7 @@ const SignUpScreen: React.FC<IProps> = ({
                     }>
                     {({values, handleChange, handleSubmit, errors, touched, submitCount}) => (
                         <>
-                            {submitCount > 0 && (
+                            {Object.keys(errors).length > 0 && submitCount > 0 && (
                                 <ErrorContainer>
                                     <AppText color={Colors.WHITE}>{t('emailOrPasswordIncorrect')}</AppText>
                                     <ErrorIcon source={images.whiteInputError} />
