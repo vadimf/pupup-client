@@ -1,0 +1,9 @@
+export const PURPLE = '#ba3e8e';
+export const FACEBOOK_BLUE = '#3b5998';
+export const CYAN = '#4ec5d3';
+export const BACKGROUND_COLOR = 'white';
+export const LIGHT_GRAY = '#ebebeb';
+export const PLACEHOLDER_COLOR = '#313131';
+export const LINK_BLUE = '#037684';
+export const WHITE = 'white';
+export const BLACK = 'black';

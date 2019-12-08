@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "562604164265",
+    "firebase_url": "https://puppapp-8cee1.firebaseio.com",
+    "project_id": "puppapp-8cee1",
+    "storage_bucket": "puppapp-8cee1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562604164265:android:dc6f62d52a574347d6d5b8",
+        "android_client_info": {
+          "package_name": "com.puppapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562604164265-7tsi67s2ogkg6oluum4pvm2s3v3p9oqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjqJp_F2REcIV_xVLb75Vl1SkUGA9XeYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562604164265-7tsi67s2ogkg6oluum4pvm2s3v3p9oqm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
