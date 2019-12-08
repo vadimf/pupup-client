@@ -11,7 +11,7 @@
         "run-ios-production": "ENVFILE=.env.production react-native run-ios",
         "start": "react-native start",
         "test": "jest",
-        "generate-types-local": "`dtsgen -o schema.d.ts --url http://localhost:3000/swagger.json -n \"\"",
+        "generate-types-local": "dtsgen -o schema.d.ts --url http://localhost:3000/swagger.json -n \"\"",
         "build-android-staging": "cd android && ENVFILE=.env.staging ./gradlew assembleRelease",
         "build-android-production": "cd android && ENVFILE=.env.production ./gradlew assembleRelease"
     },
