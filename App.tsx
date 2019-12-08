@@ -20,13 +20,17 @@ const App = () => {
     const toast: RefObject<Toast> = useRef(null);
 
     useEffect(() => {
+        checkForConnection();
+    }, []);
+
+    const checkForConnection = () => {
         NetInfo.fetch().then(state => {
             if (toast.current && !state.isConnected) {
                 toast.current.show('No internet connection found', 3000);
                 setTimeout(() => RNExitApp.exitApp(), 3000);
             }
         });
-    }, []);
+    };
 
     return (
         <Provider store={store}>
