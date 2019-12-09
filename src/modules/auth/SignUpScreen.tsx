@@ -51,7 +51,7 @@ const SignUpScreen: React.FC<IProps> = ({
 
     return (
         <SafeAreaContainer>
-            <Header text={isSignUpScreen ? t('signUp') : t('signIn')} />
+            <Header text={isSignUpScreen ? t('signUp') : t('signIn')} withBackIcon/>
             <SignUpBackground source={images.signUpBackground} />
             <Content>
                 <HeaderText>{isSignUpScreen ? t('register') : t('logIn')}</HeaderText>

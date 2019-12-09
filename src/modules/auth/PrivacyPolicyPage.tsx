@@ -12,7 +12,7 @@ const PrivacyPolicyPage = () => {
     
     return (
         <SafeAreaContainer>
-            <Header text={t('privacy')} />
+            <Header text={t('privacy')} withBackIcon/>
             <WebView source={{uri}} />
         </SafeAreaContainer>
     );

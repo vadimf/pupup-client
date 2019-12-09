@@ -169,7 +169,6 @@ export const facebookLogin: AppThunk = () => async (dispatch: AppDispatch) => {
             }
         }
     } catch {
-        console.log('Failed to login with facebook');
         dispatch(facebookLoginFailure());
     }
 };

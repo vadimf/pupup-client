@@ -43,7 +43,7 @@ const ForgotPasswordScreen: React.FC<IProps> = ({navigation: {navigate}}) => {
 
     return (
         <SafeAreaContainer>
-            <Header text={t('signIn')} />
+            <Header text={t('signIn')} withBackIcon/>
             <Content>
                 <HeaderText>{t('forgotPassword')}?</HeaderText>
                 {forgotPasswordEmailSentTo ? (

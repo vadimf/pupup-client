@@ -12,7 +12,7 @@ const TermsPage = () => {
 
     return (
         <SafeAreaContainer>
-            <Header text={t('terms')} />
+            <Header text={t('terms')} withBackIcon/>
             <WebView source={{uri}} />
         </SafeAreaContainer>
     );

@@ -1,13 +1,18 @@
 import React from 'react';
 import {NavigationTabProp} from 'react-navigation-tabs';
-import {Container} from '../../styles/common';
+import {ScreenContainer} from '../../styles/common';
+import Header from '../../components/Header';
 
 interface IProps {
-  navigation: NavigationTabProp<null>;
+    navigation: NavigationTabProp<null>;
 }
 
 const HomeScreen: React.FC<IProps> = () => {
-  return <Container />;
+    return (
+        <ScreenContainer>
+            <Header text="Home" withPuppAppIcon />
+        </ScreenContainer>
+    );
 };
 
 export default HomeScreen;

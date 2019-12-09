@@ -5,14 +5,19 @@ import {TextProps, ViewProps} from 'react-native';
 
 export const Container = styled.View`
     flex: 1;
-    background-color: ${Colors.BACKGROUND_COLOR};
+    background-color: ${Colors.AUTH_BACKGROUND_COLOR};
     align-items: center;
     justify-content: center;
 `;
 
 export const SafeAreaContainer = styled.SafeAreaView`
     flex: 1;
-    background-color: ${Colors.BACKGROUND_COLOR};
+    background-color: ${Colors.AUTH_BACKGROUND_COLOR};
+`;
+
+export const ScreenContainer = styled.SafeAreaView`
+    flex: 1;
+    background-color: ${Colors.APP_BACKGROUND_COLOR};
 `;
 
 export const HeaderText = styled.Text`

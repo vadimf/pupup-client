@@ -8,4 +8,9 @@ export const images = {
   whiteInputError: require('./whiteInputError.png'),
   forgotPassword: require('./forgotPassword.png'),
   facebook: require('./facebook.png'),
+  homeIconActive: require('./homeIconActive.png'),
+  chatsIconInactive: require('./chatsIconInactive.png'),
+  profileIconInactive: require('./profileIconInactive.png'),
+  petSettingsIcon: require('./petSettingsIcon.png'),
+  settingsIcon: require('./settingsIcon.png'),
 };

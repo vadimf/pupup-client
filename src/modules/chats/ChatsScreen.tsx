@@ -1,8 +1,13 @@
 import React from 'react';
-import {Container} from '../../styles/common';
+import {Container, SafeAreaContainer} from '../../styles/common';
+import Header from '../../components/Header';
 
 const ChatsScreen = () => {
-    return <Container />;
+    return (
+        <SafeAreaContainer>
+            <Header text="Chats" />
+        </SafeAreaContainer>
+    );
 };
 
 export default ChatsScreen;

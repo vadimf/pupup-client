@@ -5,12 +5,6 @@ import ForgotPasswordScreen from '../modules/auth/ForgotPasswordScreen';
 import TermsPage from '../modules/auth/TermsPage';
 import PrivacyPolicyPage from '../modules/auth/PrivacyPolicyPage';
 
-const AuthNavigatorConfig = {
-    initialRouteName: 'OnboardingScreen',
-    header: null,
-    headerMode: 'none'
-};
-
 const RouteConfigs = {
     OnboardingScreen,
     SignUpScreen,
@@ -18,6 +12,12 @@ const RouteConfigs = {
     ForgotPasswordScreen,
     TermsPage,
     PrivacyPolicyPage
+};
+
+const AuthNavigatorConfig = {
+    initialRouteName: 'OnboardingScreen',
+    header: null,
+    headerMode: 'none'
 };
 
 // @ts-ignore
