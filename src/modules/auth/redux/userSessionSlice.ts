@@ -1,11 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppDispatch, AppThunk} from '../../../services/store';
 import * as API from '../../../services/APIGateway';
-import NavigationService from '../../../navigations/NavigationService';
+import NavigationService from '../../../services/NavigationService';
 import {setJwtToken} from '../../../services/APIGateway';
 import {fetchConfig} from './appConfigSlice';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import SplashScreen from 'react-native-splash-screen';
+import ToastService from '../../../services/ToastService';
 
 export interface InitialState {
     isRestoringSession: boolean;
@@ -123,6 +124,7 @@ export const signUp: AppThunk = (email: string, password: string) => async (disp
         dispatch(signUpSuccess(response.user));
         NavigationService.navigate('HomeScreen');
     } catch {
+        ToastService.show('Email already exists, please try again');
         dispatch(signUpFailed());
     }
 };
@@ -135,6 +137,7 @@ export const signIn: AppThunk = (email: string, password: string) => async (disp
         dispatch(signInSuccess(response.user));
         NavigationService.navigate('HomeScreen');
     } catch {
+        ToastService.show('Bad credentials, please try again');
         dispatch(signInFailed());
     }
 };
@@ -145,6 +148,7 @@ export const sendForgotPasswordEmail: AppThunk = (email: string) => async (dispa
         await API.sendForgotPasswordEmail(email);
         dispatch(sendForgotPasswordEmailSuccess(email));
     } catch {
+        ToastService.show("Email doesn't exist, please try again");
         dispatch(sendForgotPasswordEmailFailure());
     }
 };

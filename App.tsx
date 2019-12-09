@@ -3,12 +3,13 @@ import 'react-native-gesture-handler';
 import Navigator from './src/navigations';
 import {Provider} from 'react-redux';
 import store from './src/services/store';
-import NavigationService from './src/navigations/NavigationService';
+import NavigationService from './src/services/NavigationService';
 import * as Sentry from '@sentry/react-native';
 import {YellowBox} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import Toast from 'react-native-easy-toast';
 import RNExitApp from 'react-native-exit-app';
+import ToastService from './src/services/ToastService';
 
 YellowBox.ignoreWarnings(['Require cycle:', 'Warning: AsyncStorage']);
 
@@ -17,16 +18,14 @@ Sentry.init({
 });
 
 const App = () => {
-    const toast: RefObject<Toast> = useRef(null);
-
     useEffect(() => {
         checkForConnection();
     }, []);
 
     const checkForConnection = () => {
         NetInfo.fetch().then(state => {
-            if (toast.current && !state.isConnected) {
-                toast.current.show('No internet connection found', 3000);
+            if (!state.isConnected) {
+                ToastService.show('No internet connection found');
                 setTimeout(() => RNExitApp.exitApp(), 3000);
             }
         });
@@ -34,12 +33,8 @@ const App = () => {
 
     return (
         <Provider store={store}>
-            <Navigator
-                ref={navigatorRef => {
-                    NavigationService.setTopLevelNavigator(navigatorRef);
-                }}
-            />
-            <Toast ref={toast} />
+            <Navigator ref={NavigationService.setTopLevelNavigator} />
+            <Toast ref={ToastService.setTopLevelToast} />
         </Provider>
     );
 };
