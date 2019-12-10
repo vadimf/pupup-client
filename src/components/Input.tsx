@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import {AppText, AppViewProps} from '../styles/common';
 import {Colors} from '../styles';
 import {TextInputProps} from 'react-native';
-import {images} from '../assets/images';
+import {images} from '../assets/images/index';
 
 interface IProps extends TextInputProps {
     label: string;

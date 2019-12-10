@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 import styled from 'styled-components/native';
 import {Colors} from '../../styles';
 import {ImageRequireSource} from 'react-native';
-import {images} from '../../assets/images';
+import {images} from '../../assets/images/index';
 import {AppDispatch} from '../../services/store';
 import {useDispatch} from 'react-redux';
 import {logout} from '../auth/redux/userSessionSlice';

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {images} from '../assets/images';
+import {images} from '../assets/images/index';
 
 interface IProps {
   onPress: () => void;

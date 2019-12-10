@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import HomeScreen from '../modules/home/HomeScreen';
-import {images} from '../assets/images';
+import {images} from '../assets/images/index';
 import React from 'react';
 import styled from 'styled-components/native';
 import HomeTabStack from '../modules/home/HomeTabStack';

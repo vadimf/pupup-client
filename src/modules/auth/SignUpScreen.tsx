@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {images} from '../../assets/images';
+import {images} from '../../assets/images/index';
 import {AppText, SafeAreaContainer} from '../../styles/common';
 import Header from '../../components/Header';
 import {Colors, Typography} from '../../styles';

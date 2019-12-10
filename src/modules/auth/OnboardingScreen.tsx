@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {images} from '../../assets/images';
+import {images} from '../../assets/images/index';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {facebookLogin, tryRestoreSession} from './redux/userSessionSlice';
 import {Colors} from '../../styles';

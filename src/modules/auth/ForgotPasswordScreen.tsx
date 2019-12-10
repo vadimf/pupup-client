@@ -9,7 +9,7 @@ import Button from '../../components/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import {sendForgotPasswordEmail, resetForgotPasswordScreen} from './redux/userSessionSlice';
 import {RootState} from '../../services/rootReducer';
-import {images} from '../../assets/images';
+import {images} from '../../assets/images/index';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {Formik} from 'formik';
 import {AppDispatch} from '../../services/store';

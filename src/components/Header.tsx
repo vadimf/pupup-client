@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import {Typography} from '../styles';
 import BackArrow from './BackArrow';
 import {useNavigation} from 'react-navigation-hooks';
-import {images} from '../assets/images';
+import {images} from '../assets/images/index';
 import {TouchableOpacity} from 'react-native';
 import NavigationService from '../services/NavigationService';
 
