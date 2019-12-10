@@ -15,6 +15,7 @@ import * as Yup from 'yup';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {useTranslation} from 'react-i18next';
 import {WINDOW_WIDTH} from '../../styles/mixins';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 interface IProps {
     navigation: NavigationStackProp<null>;
@@ -51,67 +52,71 @@ const SignUpScreen: React.FC<IProps> = ({
 
     return (
         <SafeAreaContainer>
-            <Header text={isSignUpScreen ? t('signUp') : t('signIn')} withBackIcon/>
-            <SignUpBackground source={images.signUpBackground} />
-            <Content>
-                <HeaderText>{isSignUpScreen ? t('register') : t('logIn')}</HeaderText>
-                <Formik
-                    initialValues={initialValues}
-                    validationSchema={SignUpSchema}
-                    onSubmit={({email, password}) =>
-                        dispatch(isSignUpScreen ? signUp(email, password) : signIn(email, password))
-                    }>
-                    {({values, handleChange, handleSubmit, errors, touched, submitCount}) => (
-                        <>
-                            {Object.keys(errors).length > 0 && submitCount > 0 && (
-                                <ErrorContainer>
-                                    <AppText color={Colors.WHITE}>{t('emailOrPasswordIncorrect')}</AppText>
-                                    <ErrorIcon source={images.whiteInputError} />
-                                </ErrorContainer>
-                            )}
-                            <Input
-                                label={t('email')}
-                                placeholder={t('enterEmail')}
-                                value={values.email}
-                                onChangeText={handleChange('email')}
-                                error={!!(errors.email && touched.email)}
-                                margin="0 0 20px 0"
-                            />
-                            <Input
-                                label={t('password')}
-                                placeholder={t('enterPassword')}
-                                value={values.password}
-                                onChangeText={handleChange('password')}
-                                error={!!(errors.password && touched.password)}
-                                margin="0 0 10px 0"
-                                secureTextEntry
-                            />
-                            <SignInLink
-                                onPress={() => navigate(isSignUpScreen ? 'SignInScreen' : 'ForgotPasswordScreen')}>
-                                <AppText color={Colors.LINK_BLUE}>
-                                    {isSignUpScreen ? t('alreadyRegistered') : t('forgotPassword')}
-                                </AppText>
-                            </SignInLink>
-                            <Button
-                                text={isSignUpScreen ? t('SIGN UP') : t('SIGN IN')}
-                                backgroundColor={Colors.PURPLE}
-                                onPress={handleSubmit}
-                                isLoading={isSigningUp}
-                            />
-                        </>
-                    )}
-                </Formik>
-                <AppText margin="30px 0 0 0">{`By signing ${isSignUpScreen ? 'up' : 'in'}, you agree to our`}</AppText>
-                <LinksContainer>
-                    <Link onPress={() => navigate('TermsPage')}>
-                        <AppText bold>{t('terms')}</AppText>
-                    </Link>
-                    <AppText> & </AppText>
-                    <Link onPress={() => navigate('PrivacyPolicyPage')}>
-                        <AppText bold>{t('privacy')}</AppText>
-                    </Link>
-                </LinksContainer>
-            </Content>
+            <Header text={isSignUpScreen ? t('signUp') : t('signIn')} withBackIcon />
+            <KeyboardAwareScrollView>
+                <SignUpBackground source={images.signUpBackground} />
+                <Content>
+                    <HeaderText>{isSignUpScreen ? t('register') : t('logIn')}</HeaderText>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={SignUpSchema}
+                        onSubmit={({email, password}) =>
+                            dispatch(isSignUpScreen ? signUp(email, password) : signIn(email, password))
+                        }>
+                        {({values, handleChange, handleSubmit, errors, touched, submitCount}) => (
+                            <>
+                                {Object.keys(errors).length > 0 && submitCount > 0 && (
+                                    <ErrorContainer>
+                                        <AppText color={Colors.WHITE}>{t('emailOrPasswordIncorrect')}</AppText>
+                                        <ErrorIcon source={images.whiteInputError} />
+                                    </ErrorContainer>
+                                )}
+                                <Input
+                                    label={t('email')}
+                                    placeholder={t('enterEmail')}
+                                    value={values.email}
+                                    onChangeText={handleChange('email')}
+                                    error={!!(errors.email && touched.email)}
+                                    margin="0 0 20px 0"
+                                />
+                                <Input
+                                    label={t('password')}
+                                    placeholder={t('enterPassword')}
+                                    value={values.password}
+                                    onChangeText={handleChange('password')}
+                                    error={!!(errors.password && touched.password)}
+                                    margin="0 0 10px 0"
+                                    secureTextEntry
+                                />
+                                <SignInLink
+                                    onPress={() => navigate(isSignUpScreen ? 'SignInScreen' : 'ForgotPasswordScreen')}>
+                                    <AppText color={Colors.LINK_BLUE}>
+                                        {isSignUpScreen ? t('alreadyRegistered') : t('forgotPassword')}
+                                    </AppText>
+                                </SignInLink>
+                                <Button
+                                    text={isSignUpScreen ? t('SIGN UP') : t('SIGN IN')}
+                                    backgroundColor={Colors.PURPLE}
+                                    onPress={handleSubmit}
+                                    isLoading={isSigningUp}
+                                />
+                            </>
+                        )}
+                    </Formik>
+                    <AppText margin="30px 0 0 0">{`By signing ${
+                        isSignUpScreen ? 'up' : 'in'
+                    }, you agree to our`}</AppText>
+                    <LinksContainer>
+                        <Link onPress={() => navigate('TermsPage')}>
+                            <AppText bold>{t('terms')}</AppText>
+                        </Link>
+                        <AppText> & </AppText>
+                        <Link onPress={() => navigate('PrivacyPolicyPage')}>
+                            <AppText bold>{t('privacy')}</AppText>
+                        </Link>
+                    </LinksContainer>
+                </Content>
+            </KeyboardAwareScrollView>
         </SafeAreaContainer>
     );
 };
@@ -119,7 +124,6 @@ const SignUpScreen: React.FC<IProps> = ({
 const SignUpBackground = styled.ImageBackground`
     height: 300px;
     width: 100%;
-    top: 100px;
     position: absolute;
 `;
 
@@ -137,7 +141,7 @@ const HeaderText = styled.Text`
 
 const LinksContainer = styled.View`
     flex-direction: row;
-    margin-top: 5px;
+    margin: 5px 0;
 `;
 
 const Link = styled.TouchableOpacity``;
