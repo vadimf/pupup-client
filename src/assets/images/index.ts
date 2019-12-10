@@ -13,4 +13,10 @@ export const images = {
   profileIconInactive: require('./profileIconInactive.png'),
   petSettingsIcon: require('./petSettingsIcon.png'),
   settingsIcon: require('./settingsIcon.png'),
+  aboutIcon: require('./aboutIcon.png'),
+  helpIcon: require('./helpIcon.png'),
+  termsIcon: require('./termsIcon.png'),
+  privacyIcon: require('./privacyIcon.png'),
+  accountIcon: require('./accountIcon.png'),
+  logoutIcon: require('./logoutIcon.png'),
 };

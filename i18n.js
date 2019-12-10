@@ -19,13 +19,20 @@ const resources = {
             forgotPassword: 'Forgot Your Password',
             alreadyRegistered: 'Already have an account? click here',
             terms: 'Terms',
-            privacy: 'Privacy Policy',
+            privacyPolicy: 'Privacy Policy',
             restorePassword:
                 'To restore your password, type your full email address and we will send you the link with further instructions',
             confirm: 'CONFIRM',
             passwordSent: 'We’ve sent you a password reset link to your email',
             waitForEmail: 'Please wait allow a few minutes for the email to arrive',
-            emailOrPasswordIncorrect: 'Email or Password incorrect, please retry'
+            emailOrPasswordIncorrect: 'Email or Password incorrect, please retry',
+            settings: 'Settings',
+            about: 'About',
+            helpCenter: 'Help Center',
+            termsOfService: 'Terms of Service',
+            privacy: 'Privacy',
+            account: 'Account',
+            logout: 'Logout'
         }
     }
 };

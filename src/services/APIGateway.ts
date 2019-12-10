@@ -14,6 +14,10 @@ export const getJwtToken = async (): Promise<string | null> => {
     return await AsyncStorage.getItem('jwt_token');
 };
 
+export const removeJwtToken = async (): Promise<void> => {
+    await AsyncStorage.removeItem('jwt_token');
+};
+
 API.interceptors.request.use(
     async config => {
         const token = await getJwtToken();
@@ -65,4 +69,9 @@ export const sendForgotPasswordEmail = async (email: string) => {
     const url = '/auth/email/forgot-password';
     const body = {email};
     return await API.post(url, body);
+};
+
+export const logout = async () => {
+    const url = '/auth';
+    return await API.delete(url);
 };

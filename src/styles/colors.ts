@@ -8,3 +8,4 @@ export const PLACEHOLDER_COLOR = '#313131';
 export const LINK_BLUE = '#037684';
 export const WHITE = 'white';
 export const BLACK = 'black';
+export const LIGHT_GREY = '#f2f2f2';

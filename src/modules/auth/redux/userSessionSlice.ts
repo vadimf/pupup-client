@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppDispatch, AppThunk} from '../../../services/store';
 import * as API from '../../../services/APIGateway';
 import NavigationService from '../../../services/NavigationService';
-import {setJwtToken} from '../../../services/APIGateway';
+import {removeJwtToken, setJwtToken} from '../../../services/APIGateway';
 import {fetchConfig} from './appConfigSlice';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import SplashScreen from 'react-native-splash-screen';
@@ -79,7 +79,10 @@ const userSession = createSlice({
         },
         resetForgotPasswordScreen(state) {
             state.forgotPasswordEmailSentTo = null;
-        }
+        },
+        logoutAttempt(state) {},
+        logoutSuccess(state) {},
+        logoutFailure(state) {}
     }
 });
 
@@ -98,7 +101,10 @@ export const {
     sendForgotPasswordEmailAttempt,
     sendForgotPasswordEmailSuccess,
     sendForgotPasswordEmailFailure,
-    resetForgotPasswordScreen
+    resetForgotPasswordScreen,
+    logoutAttempt,
+    logoutSuccess,
+    logoutFailure
 } = userSession.actions;
 
 export default userSession.reducer;
@@ -170,5 +176,17 @@ export const facebookLogin: AppThunk = () => async (dispatch: AppDispatch) => {
         }
     } catch {
         dispatch(facebookLoginFailure());
+    }
+};
+
+export const logout: AppThunk = () => async (dispatch: AppDispatch) => {
+    dispatch(logoutAttempt());
+    try {
+        await API.logout();
+        await removeJwtToken();
+        dispatch(logoutSuccess());
+        NavigationService.navigate("OnboardingScreen")
+    } catch {
+        dispatch(logoutFailure());
     }
 };

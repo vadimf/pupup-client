@@ -4,6 +4,8 @@ import {Typography} from '../styles';
 import BackArrow from './BackArrow';
 import {useNavigation} from 'react-navigation-hooks';
 import {images} from '../assets/images';
+import {TouchableOpacity} from 'react-native';
+import NavigationService from '../services/NavigationService';
 
 interface IProps {
     text: string;
@@ -19,9 +21,21 @@ const Header: React.FC<IProps> = ({text, withBackIcon, withPuppAppIcon, withSett
     return (
         <Container>
             {withBackIcon && <BackArrow onPress={() => goBack()} />}
-            {withPuppAppIcon && <TopLeftIcon source={images.logo} />}
-            {withSettingsIcon && <TopLeftIcon source={images.settingsIcon} />}
-            {withPetIcon && <TopRightIcon source={images.petSettingsIcon} />}
+            {withPuppAppIcon && (
+                <TopLeftLink>
+                    <Icon source={images.logo} />
+                </TopLeftLink>
+            )}
+            {withSettingsIcon && (
+                <TopLeftLink onPress={() => NavigationService.navigate('SettingsScreen')}>
+                    <Icon source={images.settingsIcon} />
+                </TopLeftLink>
+            )}
+            {withPetIcon && (
+                <TopRightLink>
+                    <Icon source={images.petSettingsIcon} />
+                </TopRightLink>
+            )}
             <HeaderText>{text}</HeaderText>
         </Container>
     );
@@ -38,18 +52,18 @@ const HeaderText = styled.Text`
     font-size: ${Typography.FONT_SIZE_16};
 `;
 
-const TopLeftIcon = styled.Image`
+const Icon = styled.Image`
     width: 26px;
     height: 26px;
     resize-mode: contain;
+`;
+
+const TopLeftLink = styled.TouchableOpacity`
     position: absolute;
     left: 15px;
 `;
 
-const TopRightIcon = styled.Image`
-    width: 40px;
-    height: 40px;
-    resize-mode: contain;
+const TopRightLink = styled.TouchableOpacity`
     position: absolute;
     right: 15px;
 `;

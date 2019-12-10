@@ -112,7 +112,7 @@ const SignUpScreen: React.FC<IProps> = ({
                         </Link>
                         <AppText> & </AppText>
                         <Link onPress={() => navigate('PrivacyPolicyPage')}>
-                            <AppText bold>{t('privacy')}</AppText>
+                            <AppText bold>{t('privacyPolicy')}</AppText>
                         </Link>
                     </LinksContainer>
                 </Content>
