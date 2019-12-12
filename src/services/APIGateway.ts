@@ -1,6 +1,13 @@
 import axios from 'axios';
 import {AsyncStorage} from 'react-native';
 import Config from 'react-native-config';
+import io from 'socket.io-client';
+
+const socket = io(Config.API_URL);
+socket.on('connect', function () {
+    console.log("connected")
+});
+socket.emit('events', {name: 'Nest'}, (data: any) => console.log(data));
 
 const API = axios.create({
     baseURL: Config.API_URL
@@ -21,11 +28,11 @@ export const removeJwtToken = async (): Promise<void> => {
 API.interceptors.request.use(
     async config => {
         const token = await getJwtToken();
-
+        
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
-
+        
         return config;
     },
     error => {
