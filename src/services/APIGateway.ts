@@ -1,13 +1,7 @@
 import axios from 'axios';
 import {AsyncStorage} from 'react-native';
 import Config from 'react-native-config';
-import io from 'socket.io-client';
-
-const socket = io(Config.API_URL);
-socket.on('connect', function () {
-    console.log("connected")
-});
-socket.emit('events', {name: 'Nest'}, (data: any) => console.log(data));
+import './Socket';
 
 const API = axios.create({
     baseURL: Config.API_URL
@@ -40,19 +34,15 @@ API.interceptors.request.use(
     }
 );
 
-export const fetchConfig = async (): Promise<SystemSettingsResponse> => {
-    const url = '/config';
-    return (await API.get(url)).data;
-};
 
 export const signUp = async (email: string, password: string) => {
-    const url = '/auth/email/sign-up';
+    const url = '/auth/signup';
     const body = {email, password};
     return (await API.post(url, body)).data;
 };
 
 export const signIn = async (email: string, password: string) => {
-    const url = '/auth/email/sign-in';
+    const url = '/auth/login';
     const body = {email, password};
     return (await API.post(url, body)).data;
 };
@@ -68,12 +58,12 @@ export const fetchUser = async (): Promise<UserResponse> => {
     if (!token) {
         throw new Error('No token exists, skips restore session attempt');
     }
-    const url = '/user';
+    const url = '/users/profile';
     return (await API.get(url)).data;
 };
 
 export const sendForgotPasswordEmail = async (email: string) => {
-    const url = '/auth/email/forgot-password';
+    const url = '/auth/forgot-password';
     const body = {email};
     return await API.post(url, body);
 };
@@ -81,4 +71,9 @@ export const sendForgotPasswordEmail = async (email: string) => {
 export const logout = async () => {
     const url = '/auth';
     return await API.delete(url);
+};
+
+export const fetchConfig = async (): Promise<SystemSettingsResponse> => {
+    const url = '/config';
+    return (await API.get(url)).data;
 };

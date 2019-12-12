@@ -34,7 +34,7 @@ const SignUpScreen: React.FC<IProps> = ({
 }) => {
     const dispatch: AppDispatch = useDispatch();
     const isSigningUp = useSelector((state: RootState) => state.userSession.isSigningUp);
-    const validations = useSelector((state: RootState) => state.appConfig.config!.validations);
+    // const validations = useSelector((state: RootState) => state.appConfig.config!.validations);
     const {t} = useTranslation();
 
     const SignUpSchema = Yup.object().shape({
@@ -42,8 +42,8 @@ const SignUpScreen: React.FC<IProps> = ({
             .email()
             .required(),
         password: Yup.string()
-            .min(validations!.password!.minLength!)
-            .max(validations!.password!.maxLength!)
+            .min(8)
+            .max(20)
             .required()
     });
 

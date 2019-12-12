@@ -80,9 +80,12 @@ const userSession = createSlice({
         resetForgotPasswordScreen(state) {
             state.forgotPasswordEmailSentTo = null;
         },
-        logoutAttempt(state) {},
-        logoutSuccess(state) {},
-        logoutFailure(state) {}
+        logoutAttempt(state) {
+        },
+        logoutSuccess(state) {
+        },
+        logoutFailure(state) {
+        }
     }
 });
 
@@ -111,7 +114,7 @@ export default userSession.reducer;
 
 export const tryRestoreSession: AppThunk = () => async (dispatch: AppDispatch) => {
     try {
-        await dispatch(fetchConfig());
+        // await dispatch(fetchConfig());
         const response = await API.fetchUser();
         dispatch(restoreSessionSuccess(response.user!));
         NavigationService.navigate('HomeScreen');
@@ -126,7 +129,7 @@ export const signUp: AppThunk = (email: string, password: string) => async (disp
     dispatch(signUpAttempt());
     try {
         const response = await API.signUp(email, password);
-        await setJwtToken(response.token);
+        await setJwtToken(response.accessToken);
         dispatch(signUpSuccess(response.user));
         NavigationService.navigate('HomeScreen');
     } catch {
@@ -139,7 +142,7 @@ export const signIn: AppThunk = (email: string, password: string) => async (disp
     dispatch(signInAttempt());
     try {
         const response = await API.signIn(email, password);
-        await setJwtToken(response.token);
+        await setJwtToken(response.accessToken);
         dispatch(signInSuccess(response.user));
         NavigationService.navigate('HomeScreen');
     } catch {
@@ -169,7 +172,7 @@ export const facebookLogin: AppThunk = () => async (dispatch: AppDispatch) => {
             const response = await AccessToken.getCurrentAccessToken();
             if (response) {
                 const serverResponse = await API.facebookLogin(response.accessToken);
-                await setJwtToken(serverResponse.token);
+                await setJwtToken(serverResponse.accessToken);
                 dispatch(facebookLoginSuccess(serverResponse.user));
                 NavigationService.navigate('HomeScreen');
             }
@@ -182,7 +185,7 @@ export const facebookLogin: AppThunk = () => async (dispatch: AppDispatch) => {
 export const logout: AppThunk = () => async (dispatch: AppDispatch) => {
     dispatch(logoutAttempt());
     try {
-        await API.logout();
+        // await API.logout();
         await removeJwtToken();
         dispatch(logoutSuccess());
         NavigationService.navigate("OnboardingScreen")

@@ -11,7 +11,8 @@ import Toast from 'react-native-easy-toast';
 import RNExitApp from 'react-native-exit-app';
 import ToastService from './src/services/ToastService';
 
-YellowBox.ignoreWarnings(['Require cycle:', 'Warning: AsyncStorage']);
+YellowBox.ignoreWarnings(['Require cycle:', 'Warning: AsyncStorage', 'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?'
+]);
 
 Sentry.init({
     dsn: 'https://8e3053681aa94fb0ae32d3a90238968f@sentry.io/1841567'
@@ -21,7 +22,7 @@ const App = () => {
     useEffect(() => {
         checkForConnection();
     }, []);
-
+    
     const checkForConnection = () => {
         NetInfo.fetch().then(state => {
             if (!state.isConnected) {
@@ -30,11 +31,11 @@ const App = () => {
             }
         });
     };
-
+    
     return (
         <Provider store={store}>
-            <Navigator ref={NavigationService.setTopLevelNavigator} />
-            <Toast ref={ToastService.setTopLevelToast} />
+            <Navigator ref={NavigationService.setTopLevelNavigator}/>
+            <Toast ref={ToastService.setTopLevelToast}/>
         </Provider>
     );
 };
