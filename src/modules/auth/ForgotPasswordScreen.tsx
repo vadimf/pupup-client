@@ -34,13 +34,13 @@ const ForgotPasswordScreen: React.FC<IProps> = ({navigation: {navigate}}) => {
     );
     const forgotPasswordEmailSentTo = useSelector((state: RootState) => state.userSession.forgotPasswordEmailSentTo);
     const isFocused = useIsFocused();
-
+    
     useEffect(() => {
         if (!isFocused) {
             dispatch(resetForgotPasswordScreen());
         }
     }, [isFocused]);
-
+    
     return (
         <SafeAreaContainer>
             <Header text={t('signIn')} withBackIcon/>
@@ -54,7 +54,7 @@ const ForgotPasswordScreen: React.FC<IProps> = ({navigation: {navigate}}) => {
                         <AppText textAlignCenter width={250} margin="20px 0">
                             {t('waitForEmail')}
                         </AppText>
-                        <ForgotPasswordImage source={images.forgotPassword} />
+                        <ForgotPasswordImage source={images.forgotPassword}/>
                         <Button
                             text={t('LOGIN')}
                             backgroundColor={Colors.CYAN}
