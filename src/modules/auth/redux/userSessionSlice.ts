@@ -114,14 +114,14 @@ export default userSession.reducer;
 
 export const tryRestoreSession: AppThunk = () => async (dispatch: AppDispatch) => {
     try {
-        // await dispatch(fetchConfig());
         const response = await API.fetchUser();
-        dispatch(restoreSessionSuccess(response.user!));
+        dispatch(restoreSessionSuccess(response));
         NavigationService.navigate('HomeScreen');
     } catch {
+        await removeJwtToken();
         dispatch(restoreSessionFailed());
     } finally {
-        SplashScreen.hide();
+        SplashScreen.hide()
     }
 };
 
@@ -188,7 +188,7 @@ export const logout: AppThunk = () => async (dispatch: AppDispatch) => {
         // await API.logout();
         await removeJwtToken();
         dispatch(logoutSuccess());
-        NavigationService.navigate("OnboardingScreen")
+        NavigationService.navigate('OnboardingScreen');
     } catch {
         dispatch(logoutFailure());
     }

@@ -53,7 +53,7 @@ export const facebookLogin = async (token: string) => {
     return (await API.post(url, body)).data;
 };
 
-export const fetchUser = async (): Promise<UserResponse> => {
+export const fetchUser = async () => {
     const token = await getJwtToken();
     if (!token) {
         throw new Error('No token exists, skips restore session attempt');

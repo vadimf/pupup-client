@@ -6,4 +6,4 @@ const socket = io(Config.API_URL);
 socket.on('connect', function () {
     console.log("connected")
 });
-socket.emit('events', {name: 'Nest'}, (data: any) => console.log(data));
+socket.emit('events', "hello", (data: any) => console.log(data));

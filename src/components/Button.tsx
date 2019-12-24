@@ -29,7 +29,7 @@ const Button: React.FC<IProps> = ({text, width, backgroundColor, height, margin,
     );
 };
 
-interface WrapperProps {
+interface WrapperProps extends TouchableOpacityProps {
     width?: number;
     backgroundColor: string;
     height?: number;
@@ -45,6 +45,7 @@ const ButtonWrapper = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     margin: ${(props: WrapperProps) => props.margin || 0};
+    opacity: ${(props: WrapperProps) => props.disabled ? 0.7 : 1};
 `;
 
 const IconContainer = styled.View`

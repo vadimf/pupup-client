@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {AppText, Container, SafeAreaContainer} from '../../styles/common';
+import React, {useEffect} from 'react';
+import {AppText, SafeAreaContainer} from '../../styles/common';
 import Header from '../../components/Header';
 import styled from 'styled-components/native';
 import {Colors, Typography} from '../../styles';
@@ -9,12 +9,13 @@ import Button from '../../components/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import {sendForgotPasswordEmail, resetForgotPasswordScreen} from './redux/userSessionSlice';
 import {RootState} from '../../services/rootReducer';
-import {images} from '../../assets/images/index';
+import {images} from '../../assets/images';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {Formik} from 'formik';
 import {AppDispatch} from '../../services/store';
 import * as Yup from 'yup';
 import {useIsFocused} from 'react-navigation-hooks';
+import {Keyboard} from 'react-native';
 
 interface IProps {
     navigation: NavigationStackProp<null>;
@@ -34,16 +35,16 @@ const ForgotPasswordScreen: React.FC<IProps> = ({navigation: {navigate}}) => {
     );
     const forgotPasswordEmailSentTo = useSelector((state: RootState) => state.userSession.forgotPasswordEmailSentTo);
     const isFocused = useIsFocused();
-    
+
     useEffect(() => {
         if (!isFocused) {
             dispatch(resetForgotPasswordScreen());
         }
     }, [isFocused]);
-    
+
     return (
         <SafeAreaContainer>
-            <Header text={t('signIn')} withBackIcon/>
+            <Header text={t('signIn')} withBackIcon />
             <Content>
                 <HeaderText>{t('forgotPassword')}?</HeaderText>
                 {forgotPasswordEmailSentTo ? (
@@ -54,7 +55,7 @@ const ForgotPasswordScreen: React.FC<IProps> = ({navigation: {navigate}}) => {
                         <AppText textAlignCenter width={250} margin="20px 0">
                             {t('waitForEmail')}
                         </AppText>
-                        <ForgotPasswordImage source={images.forgotPassword}/>
+                        <ForgotPasswordImage source={images.forgotPassword} />
                         <Button
                             text={t('LOGIN')}
                             backgroundColor={Colors.CYAN}
@@ -71,7 +72,10 @@ const ForgotPasswordScreen: React.FC<IProps> = ({navigation: {navigate}}) => {
                         <Formik
                             initialValues={{email: ''}}
                             validationSchema={ForgotPasswordSchema}
-                            onSubmit={({email}) => dispatch(sendForgotPasswordEmail(email))}>
+                            onSubmit={({email}) => {
+                                Keyboard.dismiss();
+                                dispatch(sendForgotPasswordEmail(email));
+                            }}>
                             {({values: {email}, handleChange, handleSubmit, errors, touched}) => (
                                 <>
                                     <Input
