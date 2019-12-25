@@ -66,3 +66,6 @@ buck-out/
 
 *.apk
 *.hprof
+.env.local
+.env.production
+.env.staging
